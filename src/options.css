@@ -281,9 +281,33 @@ h2 {
     color: #eee;
   }
   input, select, button, textarea {
-    background: #232526;
-    color: #eee;
+    background: #2a2d2e;
+    color: #ffffff;
     border-color: #444;
+  }
+  .modal-content {
+    background: #1e2122;
+  }
+  .modal-content input,
+  .modal-content textarea {
+    background: #2a2d2e;
+    color: #ffffff;
+    border-color: #444;
+  }
+  .modal-content h3,
+  .modal-content label {
+    color: #eee;
+  }
+  .modes-list,
+  .modes-row {
+    background: #1e2122;
+  }
+  .modes-row:hover {
+    background: #2a2d2e;
+  }
+  .modes-col-name,
+  .modes-col-prompt {
+    color: #eee;
   }
 }
 h2 {
