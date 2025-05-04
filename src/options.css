@@ -1,0 +1,456 @@
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  max-width: 680px;
+  margin: 32px auto 24px auto;
+  background: linear-gradient(120deg, #f6f8fc 0%, #e9f1fa 100%);
+  color: #23272f;
+  box-shadow: 0 6px 32px rgba(50,60,90,0.09), 0 1.5px 4px rgba(0,0,0,0.04);
+  border-radius: 18px;
+  padding: 32px 28px 24px 28px;
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(120deg, #191c22 0%, #23252b 100%);
+    color: #f3f6fa;
+    box-shadow: 0 6px 32px rgba(0,0,0,0.33);
+  }
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 1.7rem;
+  margin-bottom: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.api-key-section {
+  margin-bottom: 28px;
+}
+.api-key-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 7px;
+}
+.api-key-row input {
+  flex: 1 1 auto;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1.5px solid #b7c6d8;
+  font-size: 1.08em;
+  background: #f8fbff;
+  transition: border 0.16s;
+}
+.api-key-row input:focus {
+  border-color: #5b9aff;
+  outline: none;
+}
+.api-key-row button {
+  padding: 7px 14px;
+  border-radius: 6px;
+  border: 1.5px solid #b7c6d8;
+  background: #f2f7fd;
+  color: #222;
+  font-size: 1.08em;
+  cursor: pointer;
+  transition: background 0.14s, border 0.14s;
+  box-shadow: 0 1px 2px rgba(90,110,140,0.03);
+}
+.api-key-row button:hover, .api-key-row button:focus {
+  background: #e6f0ff;
+  border-color: #5b9aff;
+}
+.status-msg {
+  display: block;
+  min-height: 20px;
+  margin-top: 7px;
+  font-size: 1em;
+  color: #3bb143;
+  letter-spacing: 0.1px;
+}
+.status-msg[aria-live="polite"] {
+  font-weight: 500;
+}
+
+.modes-section {
+  margin-bottom: 30px;
+}
+.modes-header-row {
+  display: flex;
+  font-weight: 600;
+  padding: 10px 0 10px 0;
+  border-bottom: 2px solid #e0e7ef;
+  color: #3b4a5a;
+  background: #f3f8ff;
+  border-radius: 8px 8px 0 0;
+  font-size: 1.04em;
+  letter-spacing: 0.03em;
+}
+.modes-list {
+  margin-bottom: 12px;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 1.5px 7px rgba(120,140,180,0.06);
+}
+.modes-row {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #f0f3f7;
+  padding: 10px 0;
+  background: #fff;
+  transition: background 0.12s;
+}
+.modes-row:last-child {
+  border-bottom: none;
+}
+.modes-row:hover {
+  background: #f0f7ff;
+}
+.modes-col {
+  padding: 0 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.modes-col-name {
+  flex: 0 0 120px;
+  font-weight: 600;
+  color: #234;
+}
+.modes-col-prompt {
+  flex: 1 1 250px;
+  font-size: 1em;
+  color: #445;
+}
+.modes-col-shortcut {
+  flex: 0 0 100px;
+  font-family: monospace;
+  color: #5b9aff;
+  font-size: 1em;
+  text-align: center;
+}
+.modes-col-actions {
+  flex: 0 0 100px;
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
+.modes-row button {
+  padding: 4px 10px;
+  font-size: 1em;
+  border-radius: 5px;
+  border: 1.5px solid #b7c6d8;
+  background: #f2f7fd;
+  color: #222;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(90,110,140,0.03);
+  transition: background 0.13s, border 0.13s;
+}
+.modes-row button:hover, .modes-row button:focus {
+  background: #e6f0ff;
+  border-color: #5b9aff;
+}
+#addModeBtn {
+  margin-top: 10px;
+  padding: 8px 22px;
+  border-radius: 6px;
+  border: 1.5px solid #5b9aff;
+  background: linear-gradient(90deg,#eaf6ff 0%,#d6edff 100%);
+  color: #1b2a3a;
+  font-size: 1.08em;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(90,110,140,0.05);
+  transition: background 0.15s, border 0.15s;
+}
+#addModeBtn:hover, #addModeBtn:focus {
+  background: #e6f0ff;
+  border-color: #3b8aff;
+}
+
+/* Modal Overlay */
+#editMode {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(34, 49, 63, 0.22);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(1.5px);
+}
+#editMode[style*="display: none"] {
+  display: none !important;
+}
+.modal-content {
+  background: linear-gradient(120deg, #fff 0%, #f7faff 100%);
+  border-radius: 12px;
+  box-shadow: 0 6px 32px rgba(50,60,90,0.12), 0 1.5px 4px rgba(0,0,0,0.06);
+  padding: 28px 24px 18px 24px;
+  min-width: 310px;
+  max-width: 95vw;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.modal-content h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.18em;
+  font-weight: 700;
+  color: #2a3540;
+}
+.modal-content label {
+  font-weight: 500;
+  margin-bottom: 2px;
+  color: #2b3a4c;
+}
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  font-size: 1.04em;
+  margin-bottom: 6px;
+  padding: 7px 10px;
+  border: 1.5px solid #b7c6d8;
+  border-radius: 5px;
+  background: #f8fbff;
+  transition: border 0.15s;
+  resize: none;
+}
+.modal-content input:focus,
+.modal-content textarea:focus {
+  border-color: #5b9aff;
+  outline: none;
+}
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+.modal-actions button {
+  padding: 7px 18px;
+  border-radius: 6px;
+  border: 1.5px solid #b7c6d8;
+  background: #eaf6ff;
+  color: #1b2a3a;
+  font-size: 1.05em;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(90,110,140,0.05);
+  transition: background 0.15s, border 0.15s;
+}
+.modal-actions button:hover, .modal-actions button:focus {
+  background: #d6edff;
+  border-color: #3b8aff;
+}
+
+.shortcuts-info {
+  margin-top: 22px;
+  text-align: left;
+}
+.shortcuts-info a {
+  color: #5b9aff;
+  text-decoration: none;
+  font-size: 1.01em;
+  font-weight: 500;
+  transition: color 0.14s;
+}
+.shortcuts-info a:focus, .shortcuts-info a:hover {
+  text-decoration: underline;
+  color: #2a7aff;
+}
+
+@media (max-width: 600px) {
+  body {
+    max-width: 99vw;
+    padding: 10px 2vw;
+  }
+  .modal-content {
+    padding: 16px 5vw 10px 5vw;
+    min-width: 0;
+  }
+  .modes-header-row, .modes-row {
+    font-size: 0.98em;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #181a1b;
+    color: #eee;
+  }
+  input, select, button, textarea {
+    background: #232526;
+    color: #eee;
+    border-color: #444;
+  }
+}
+h2 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  margin-bottom: 18px;
+}
+.api-key-section {
+  margin-bottom: 22px;
+}
+.api-key-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+.api-key-row input {
+  flex: 1 1 auto;
+  padding: 5px 7px;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  font-size: 1em;
+}
+.api-key-row button {
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  background: #f2f2f2;
+  color: #222;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.api-key-row button:active, .api-key-row button:focus {
+  background: #e0e0e0;
+  outline: 2px solid #5b9aff;
+}
+.status-msg {
+  display: block;
+  min-height: 20px;
+  margin-top: 6px;
+  font-size: 0.98em;
+}
+.modes-section {
+  margin-bottom: 24px;
+}
+.modes-header-row {
+  display: flex;
+  font-weight: 600;
+  padding: 7px 0 7px 0;
+  border-bottom: 1px solid #e0e0e0;
+  color: #555;
+  background: #f8f8f8;
+}
+.modes-list {
+  margin-bottom: 10px;
+}
+.modes-row {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 8px 0;
+  background: #fff;
+  transition: background 0.12s;
+}
+.modes-row:hover {
+  background: #f7faff;
+}
+.modes-col {
+  padding: 0 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.modes-col-name {
+  flex: 0 0 110px;
+  font-weight: 500;
+}
+.modes-col-prompt {
+  flex: 1 1 250px;
+  font-size: 0.97em;
+  color: #444;
+}
+.modes-col-shortcut {
+  flex: 0 0 90px;
+  font-family: monospace;
+  color: #5b9aff;
+  font-size: 0.98em;
+}
+.modes-col-actions {
+  flex: 0 0 90px;
+  display: flex;
+  gap: 4px;
+}
+.modes-row button {
+  padding: 2px 7px;
+  font-size: 0.97em;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  background: #f2f2f2;
+  color: #222;
+  cursor: pointer;
+}
+.modes-row button:active, .modes-row button:focus {
+  background: #e0e0e0;
+  outline: 2px solid #5b9aff;
+}
+#addModeBtn {
+  margin-top: 7px;
+  padding: 7px 18px;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  background: #eaf6ff;
+  color: #222;
+  font-size: 1em;
+  cursor: pointer;
+}
+#addModeBtn:active, #addModeBtn:focus {
+  background: #d6edff;
+  outline: 2px solid #5b9aff;
+}
+#editMode {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 320px;
+  max-width: 95vw;
+  background: #fff;
+  border: 1.5px solid #5b9aff;
+  border-radius: 8px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.17);
+  padding: 18px 18px 12px 18px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+#editMode input, #editMode textarea {
+  width: 100%;
+  font-size: 1em;
+  margin-bottom: 4px;
+  padding: 6px 8px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+}
+#editMode button {
+  margin-top: 5px;
+  padding: 6px 14px;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  background: #f2f2f2;
+  color: #222;
+  font-size: 1em;
+  cursor: pointer;
+}
+#editMode button:active, #editMode button:focus {
+  background: #e0e0e0;
+  outline: 2px solid #5b9aff;
+}
+.shortcuts-info {
+  margin-top: 18px;
+}
+.shortcuts-info a {
+  color: #5b9aff;
+  text-decoration: none;
+  font-size: 0.98em;
+}
+.shortcuts-info a:focus, .shortcuts-info a:hover {
+  text-decoration: underline;
+}

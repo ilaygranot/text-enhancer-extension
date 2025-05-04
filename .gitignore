@@ -1,0 +1,44 @@
+node_modules/
+.DS_Store
+*.log
+```
+
+4. Add and commit the current files:
+
+```bash
+git add .
+git commit -m "Initial commit: Basic grammar correction extension"
+```
+
+5. (Optional) If you want to connect it to a remote repository on GitHub:
+   
+```bash
+# Create a new repository on GitHub first, then:
+git remote add origin <your-github-repo-url>
+git branch -M main
+git push -u origin main
+```
+
+Now your code is safely versioned and you can proceed with making changes. Use `git status` to check the status of your changes and `git branch` if you want to create a new branch for your modifications.// filepath: /Users/ilayg/extenstion/.gitignore
+node_modules/
+.DS_Store
+*.log
+```
+
+4. Add and commit the current files:
+
+```bash
+git add .
+git commit -m "Initial commit: Basic grammar correction extension"
+```
+
+5. (Optional) If you want to connect it to a remote repository on GitHub:
+   
+```bash
+# Create a new repository on GitHub first, then:
+git remote add origin <your-github-repo-url>
+git branch -M main
+git push -u origin main
+```
+
+Now your code is safely versioned and you can proceed with making changes. Use `git status` to check the status of your changes and `git branch` if you want to create a new branch for your modifications.

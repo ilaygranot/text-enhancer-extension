@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Text Enhancer</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <h2>Text Enhancer</h2>
+  <form id="enhancerForm" autocomplete="off">
+    <section class="section" aria-label="API Key Section">
+      <label for="apiKey">GPT API Key:</label>
+      <div class="api-key-row">
+        <input type="password" id="apiKey" placeholder="Enter your OpenAI API key" aria-label="GPT API Key" />
+        <button type="button" id="toggleApiKey" aria-label="Show or hide API key" tabindex="0">Show</button>
+        <button type="button" id="saveApiKey" aria-label="Save API key">💾</button>
+      </div>
+    </section>
+    <section class="section" aria-label="Mode Selection Section">
+      <label for="modeSelect">Mode:</label>
+      <select id="modeSelect" aria-label="Enhancement Mode"></select>
+      <span id="modeInfo" tabindex="0" aria-label="Mode Info"></span>
+    </section>
+    <section class="section action-row" aria-label="Enhance Action Section">
+      <button type="button" id="enhanceBtn" aria-label="Enhance selected text">Enhance Selection</button>
+      <span id="shortcutInfo" title="Keyboard Shortcut"></span>
+    </section>
+    <section class="section">
+      <a href="options.html" target="_blank" tabindex="0">Manage Modes</a>
+    </section>
+    <div id="feedback">
+      <span id="spinner" class="hidden" aria-live="polite"></span>
+      <span id="checkmark" class="hidden" aria-live="polite">✔️</span>
+      <span id="errorMsg" class="hidden" aria-live="assertive"></span>
+    </div>
+  </form>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Text Enhancer Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <h2>Text Enhancer Settings</h2>
+  <!-- API Key Section -->
+  <section class="api-key-section" aria-label="API Key Section">
+    <label for="apiKeyInput"><strong>GPT API Key:</strong></label>
+    <div class="api-key-row">
+      <input type="password" id="apiKeyInput" placeholder="Enter your OpenAI API key" aria-label="GPT API Key" />
+      <button type="button" id="toggleApiKeyBtn" aria-label="Show or hide API key">Show</button>
+      <button type="button" id="saveApiKeyBtn" aria-label="Save API key">💾</button>
+    </div>
+    <span id="apiKeyStatus" class="status-msg" aria-live="polite"></span>
+  </section>
+
+  <!-- Modes Table -->
+  <section class="modes-section" aria-label="Modes Section">
+    <div class="modes-header-row">
+      <span class="modes-col modes-col-name">Name</span>
+      <span class="modes-col modes-col-prompt">Prompt</span>
+      <span class="modes-col modes-col-shortcut">Shortcut</span>
+      <span class="modes-col modes-col-actions">Actions</span>
+    </div>
+    <div id="modesList" class="modes-list"></div>
+    <button id="addModeBtn" type="button">Add New Mode</button>
+  </section>
+
+  <!-- Modal for Add/Edit Mode -->
+  <div id="editMode" class="modal" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="editModeTitle">
+    <div class="modal-content">
+      <h3 id="editModeTitle">Edit Mode</h3>
+      <label for="modeName">Name</label>
+      <input id="modeName" type="text" maxlength="40" aria-label="Mode name" autocomplete="off" required />
+      <label for="modePrompt">Prompt</label>
+      <textarea id="modePrompt" maxlength="200" aria-label="Mode prompt" required></textarea>
+      <div class="modal-actions">
+        <button id="saveModeBtn" type="button">Save</button>
+        <button id="cancelModeBtn" type="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Status message for modes -->
+  <span id="modesStatus" class="status-msg" aria-live="polite"></span>
+
+  <!-- Shortcut info -->
+  <section class="shortcuts-info">
+    <a href="chrome://extensions/shortcuts" target="_blank" rel="noopener">Go to Chrome Shortcut Settings</a>
+  </section>
+
+  <script src="options.js"></script>
+</body>
+</html>

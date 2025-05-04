@@ -1,0 +1,143 @@
+body {
+  font-family: system-ui, sans-serif;
+  min-width: 260px;
+  padding: 12px 14px 10px 14px;
+  background: #fff;
+  color: #222;
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #181a1b;
+    color: #eee;
+  }
+  input, select, button, textarea {
+    background: #232526;
+    color: #eee;
+    border-color: #444;
+  }
+}
+h2 {
+  margin-top: 0;
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+}
+.section {
+  margin-bottom: 10px;
+}
+.api-key-row {
+  display: flex;
+  gap: 4px;
+}
+input[type="password"], input[type="text"] {
+  flex: 1 1 auto;
+  padding: 4px 6px;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  font-size: 0.95em;
+}
+button {
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  background: #f2f2f2;
+  color: #222;
+  font-size: 0.95em;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+button:active, button:focus {
+  background: #e0e0e0;
+  outline: 2px solid #5b9aff;
+}
+@media (prefers-color-scheme: dark) {
+  button {
+    background: #232526;
+    color: #eee;
+    border-color: #444;
+  }
+  button:active, button:focus {
+    background: #222;
+    outline: 2px solid #5b9aff;
+  }
+}
+select {
+  width: 100%;
+  margin-top: 2px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  font-size: 0.95em;
+}
+.action-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#shortcutInfo {
+  font-size: 0.9em;
+  color: #888;
+  margin-left: 4px;
+}
+#modeInfo {
+  margin-left: 6px;
+  cursor: pointer;
+  color: #888;
+  font-size: 1.1em;
+}
+#modeInfo:focus, #modeInfo:hover {
+  color: #5b9aff;
+}
+#feedback {
+  min-height: 20px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#spinner {
+  display: inline-flex;
+  align-items: center;
+  color: #5b9aff;
+}
+#checkmark {
+  color: #3bb143;
+  font-size: 1.2em;
+  margin-left: 4px;
+}
+#errorMsg {
+  color: #c00;
+  font-size: 0.98em;
+  margin-left: 4px;
+}
+.hidden {
+  display: none !important;
+}
+.dot-spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  position: relative;
+}
+.dot-spinner:after {
+  content: " ";
+  display: block;
+  width: 14px;
+  height: 14px;
+  margin: 2px;
+  border-radius: 50%;
+  border: 2px solid #5b9aff;
+  border-color: #5b9aff transparent #5b9aff transparent;
+  animation: dot-spin 1.1s linear infinite;
+}
+@keyframes dot-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+a {
+  color: #5b9aff;
+  text-decoration: none;
+  font-size: 0.98em;
+}
+a:focus, a:hover {
+  text-decoration: underline;
+}
